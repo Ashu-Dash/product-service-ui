@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-xs-4">
+    <table class="table table-striped">
+      <tr>
+        <th>Category Id</th>
+        <th>Category Name</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.categoryId }}</td>
+        <td>{{ category.categoryName }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="showCategoryProducts(category)">Show Products</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-xs-7">
+    <app-category-products></app-category-products>
+  </div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-xs-12 form-inline">
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmitCategory(categoryForm.value)">
+      <input class="form-control" type="text" placeholder="Category Id" formControlName="categoryId">
+      <input class="form-control" type="text" placeholder="Category Name" formControlName="categoryName">
+      <input class="form-control" type="text" placeholder="Category Description" formControlName="description">
+      <button class="btn btn-success" type="submit" [disabled]="!categoryForm.valid">Add Category</button>
+    </form>
+  </div>
+</div>
